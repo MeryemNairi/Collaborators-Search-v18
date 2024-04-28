@@ -1,0 +1,96 @@
+@import '~@fluentui/react/dist/sass/References.scss'; // Importation des styles Fluent UI
+
+.directory {
+
+  /* Barre de recherche */
+  .header {
+    width: 100%; // Largeur de la barre de recherche (90% pour occuper presque tout l'espace)
+    margin: 0 auto; // Centrer horizontalement
+    background-color: #044123;
+    height: 49px;
+    display: flex;
+    justify-content: center;
+    //align-items: center;
+
+  }
+
+  /* Champ de texte de la barre de recherche */
+  .searchTextBox {
+    min-width: 100px;
+    max-width: 350px;
+    margin-bottom: 0;
+    text-align: center;
+    border-radius: 20px;
+    position: fixed;
+    margin-top: 3.5px;
+    position: relative;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    height: px;
+    top: 48%;
+    transform: translateY(-50%);
+  }
+
+
+  .suggestions {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    top: calc(100% + 5px);
+    left: 50%; 
+    transform: translateX(-50%); 
+    width: 100%; 
+    max-width: 350px; 
+    border: 1px solid #ccc;
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    z-index: 999;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+
+  .suggestion {
+    padding: 5px 15px; /* Réduire le rembourrage vertical */
+    font-size: 14px; /* Réduire la taille de la police */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    line-height: 1.2; /* Ajuster la hauteur de ligne */
+  }
+
+  .suggestion:hover {
+    background-color: #f0f0f0;
+  }
+
+  .serchWrap {
+    min-width: 550px;
+    max-width: 1000px;
+  }
+
+  /* Liste des utilisateurs */
+  .userList {
+    margin-top: 10px;
+    padding: 0;
+    list-style-type: none;
+  }
+
+  /* Éléments de la liste des utilisateurs */
+  .userListItem {
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  .logo {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 42px;
+    height: 38px;
+  }
+
+}
