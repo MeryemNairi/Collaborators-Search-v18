@@ -22,7 +22,7 @@ const LogoSVG = (
 
 import { IDirectoryProps } from './IDirectoryProps';
 //import Paging from './Pagination/Paging';
-import Navbar from './Navbar/Navbar';
+
 
 
 const wrapStackTokens: IStackTokens = { childrenGap: 30 };
@@ -200,39 +200,21 @@ const DirectoryHook: React.FC<IDirectoryProps> = (props) => {
 
   const _sortPeople = async (sortField: string): Promise<void> => {
     let _users = [...state.users];
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    _users = _users.sort((a: any, b: any) => {
-
-
-      switch (sortField) {
-
-        // Sort by Location
-        case "Location":
-          if ((a.BaseOfficeLocation || "").toUpperCase() < (b.BaseOfficeLocation || "").toUpperCase()) {
-            return -1;
-          }
-          if ((a.BaseOfficeLocation || "").toUpperCase() > (b.BaseOfficeLocation || "").toUpperCase()) {
-            return 1;
-          }
-          return 0;
-
-          break;
-          break;
-
-        default:
-          if ((a[sortField] || "").toUpperCase() < (b[sortField] || "").toUpperCase()) {
-            return -1;
-          }
-          if ((a[sortField] || "").toUpperCase() > (b[sortField] || "").toUpperCase()) {
-            return 1;
-          }
-          return 0;
-
-          break;
-      }
-    });
+  
+    const compareFunction = (a: any, b: any) => {
+      const valueA = sortField === "Location" ? (a.BaseOfficeLocation || "").toUpperCase() : (a[sortField] || "").toUpperCase();
+      const valueB = sortField === "Location" ? (b.BaseOfficeLocation || "").toUpperCase() : (b[sortField] || "").toUpperCase();
+  
+      if (valueA < valueB) return -1;
+      if (valueA > valueB) return 1;
+      return 0;
+    };
+  
+    _users.sort(compareFunction);
+  
     setstate({ ...state, users: _users, searchString: sortField });
   };
+  
 
   useEffect(() => {
     setPageSize(props.pageSize);
@@ -299,9 +281,6 @@ const DirectoryHook: React.FC<IDirectoryProps> = (props) => {
             </div>
           )}
         </div>
-      </div>
-      <div>
-        <Navbar /> {/* Ajoutez le composant Navbar ici */}
       </div>
     </div>
   );
